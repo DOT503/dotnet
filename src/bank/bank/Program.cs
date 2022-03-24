@@ -14,6 +14,8 @@ namespace BankAccountNS
     {
         private readonly string m_customerName;
         private double m_balance;
+        public const string DebitAmountExceedsBalanceMessage = "Debit amount exceeds balance";
+        public const string DebitAmountLessThanZeroMessage = "Debit amount is less than zero";
 
         private BankAccount() { }
 
@@ -37,12 +39,12 @@ namespace BankAccountNS
         {
             if (amount > m_balance)
             {
-                throw new ArgumentOutOfRangeException("amount");
+                throw new System.ArgumentOutOfRangeException("amount", amount, DebitAmountExceedsBalanceMessage);
             }
 
             if (amount < 0)
             {
-                throw new ArgumentOutOfRangeException("amount");
+                throw new System.ArgumentOutOfRangeException("amount", amount, DebitAmountLessThanZeroMessage);
             }
 
             m_balance += amount; // intentionally incorrect code
@@ -50,12 +52,19 @@ namespace BankAccountNS
 
         public void Credit(double amount)
         {
-            if (amount < 0)
-            {
-                throw new ArgumentOutOfRangeException("amount");
-            }
-
+ 
             m_balance += amount;
+        }
+        public void Withdraw(double amount)
+        {
+            if (m_balance >= amount)
+            {
+                m_balance -= amount;
+            }
+            else
+            {
+                throw new ArgumentException(nameof(amount), "Withdrawal exceeds balance!");
+            }
         }
 
         public static void Main()
