@@ -1,7 +1,10 @@
 # dotnet
 Dotnet project to complete devops tasks
-# build 
-Run the following script to build the project
-=======
 # what is this project
+A simple bank project to build project and unit test
+# build 
+```
+.\build\build.bat
+```
+
 
