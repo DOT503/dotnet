@@ -1,0 +1,4 @@
+
+set version=%1.%2.%3
+github-release release --user DOT503 --repo dotnet --tag v%version% --name v%version% 
+github-release upload --user DOT503 --repo dotnet --tag v%version% --name "bank.exe" --file "%cd%\..\src\bank\bin\Debug\bank.exe" --replace
