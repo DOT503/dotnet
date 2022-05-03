@@ -23,6 +23,10 @@ namespace BankAccountNS
         {
             m_customerName = customerName;
             m_balance = balance;
+            if (m_balance <= 0)
+            {
+                throw new System.ArgumentOutOfRangeException("amount", m_balance, "negative number");
+            }
         }
 
         public string CustomerName
@@ -47,12 +51,16 @@ namespace BankAccountNS
                 throw new System.ArgumentOutOfRangeException("amount", amount, DebitAmountLessThanZeroMessage);
             }
 
-            m_balance += amount; // intentionally incorrect code
+            m_balance -= amount; // intentionally incorrect code
         }
 
         public void Credit(double amount)
         {
  
+            if (amount <= 0)
+            {
+                throw new System.ArgumentException("amount");
+            }
             m_balance += amount;
         }
         public void Withdraw(double amount)

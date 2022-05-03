@@ -65,7 +65,7 @@ namespace UnitTestProject1
             var account = new BankAccount("John Doe", 10.0);
 
             // act and assert
-            Assert.ThrowsException<System.ArgumentException>(() => account.Withdraw(20.0));
+            Assert.ThrowsException<System.ArgumentException>(() => account.Withdraw(11.0));
         }
         [TestMethod]
         public void Credit_Negative_Number()
@@ -74,7 +74,7 @@ namespace UnitTestProject1
             var account = new BankAccount("John Doe", 10.0);
 
             // act and assert
-            Assert.ThrowsException<System.ArgumentException>(() => account.Credit(0.0));
+            Assert.ThrowsException<System.ArgumentException>(() => account.Credit(-1.0));
         }
     }
 }
